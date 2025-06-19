@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import { FaFacebookF, FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
@@ -17,34 +18,18 @@ export default function Header() {
 
   useEffect(() => {
     setHasMounted(true);
-
-    // Gestion de scroll background header
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // IntersectionObserver pour sections visibles
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveLink(`#${entry.target.id}`);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.5, // 50% de la section visible pour l'activer
-      }
-    );
-
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActiveLink(`#${entry.target.id}`);
+      });
+    }, { threshold: 0.5 });
     sections.forEach((section) => observer.observe(section));
     return () => sections.forEach((section) => observer.unobserve(section));
   }, []);
@@ -68,6 +53,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center">
+          {/* Logo */}
           <motion.a
             href="#home"
             className="text-3xl font-bold flex items-center"
@@ -84,7 +70,8 @@ export default function Header() {
           </motion.a>
 
           {/* Navigation Desktop */}
-          <nav className="hidden md:flex space-x-7">
+          <nav className="hidden md:flex items-center space-x-8">
+            {/* Liens */}
             {navItems.map((item) => (
               <motion.a
                 key={item.href}
@@ -104,6 +91,22 @@ export default function Header() {
                 {item.name}
               </motion.a>
             ))}
+
+            {/* Réseaux sociaux sur PC*/}
+            <div className="flex items-center gap-x-4 text-gray-400 ">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#1877F2] transition-colors duration-200">
+                <FaFacebookF size={20} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#E4405F] transition-colors duration-200">
+                <FaInstagram size={20} />
+              </a>
+              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors duration-200">
+                <FaWhatsapp size={20} />
+              </a>
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#6e5494] transition-colors duration-200">
+                <FaGithub size={20} />
+              </a>
+            </div>
           </nav>
 
           {/* Bouton Menu Mobile */}
@@ -128,6 +131,7 @@ export default function Header() {
               transition={{ duration: 0.3 }}
               className="md:hidden mt-4 bg-gray-800 py-2 rounded-lg shadow-xl"
             >
+              {/* Liens */}
               {navItems.map((item) => (
                 <motion.a
                   key={item.href}
@@ -147,6 +151,22 @@ export default function Header() {
                   {item.name}
                 </motion.a>
               ))}
+
+              {/* Réseaux sociaux */}
+              <div className="flex justify-center gap-x-5 my-4 text-gray-400">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#1877F2] transition-colors duration-200">
+                  <FaFacebookF size={22} />
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#E4405F] transition-colors duration-200">
+                  <FaInstagram size={22} />
+                </a>
+                <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors duration-200">
+                  <FaWhatsapp size={22} />
+                </a>
+                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" className="hover:text-[#6e5494] transition-colors duration-200">
+                  <FaGithub size={22} />
+                </a>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
