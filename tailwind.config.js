@@ -21,7 +21,9 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // Exemple de police personnalisée
+        playfair: ['"Playfair Display"', 'serif'],
+        sans: ['Inter', 'sans-serif'],
+        greatvibes: ['"Great Vibes"', 'cursive'],
       },
     },
   },

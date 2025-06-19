@@ -18,24 +18,16 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-6xl font-bold mb-8"
+            className="text-4xl md:text-6xl font-Playfair italic font-bold mb-8"
           >
-            Bonjour
+            Bonjour, <span className="font-greatvibes italic leading-relaxed">Bienvenue sur mon Portfolio</span>
           </motion.h1>
-          <p className="text-lg text-gray-300 mb-8">
+          <p className="text-2xl text-gray-300 mb-8">
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Perspiciatis tempora sunt inventore autem a ipsum nostrum at debitis
             qui corrupti!
           </p>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-2xl text-gray-300 mb-8"
-          >
-            Bienvenue sur mon portfolio
-          </motion.p>
           <button className="bg-indigo-500 hover:bg-indigo-700 py-4 px-8 rounded font-bold text-lg transition-all duration-300 hover:translate-x-2">
             Télécharger Cv
           </button>
